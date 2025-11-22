@@ -6,6 +6,13 @@
 
 #ifdef BOARD_ESP32S3_DEV
 #define BOARD_ID 1
+
+#define PIN_CAN_TX GPIO_NUM_8
+#define PIN_CAN_RX GPIO_NUM_9
+#define PIN_UART_TX 37
+#define PIN_UART_RX 36
+#define WS2812_LED_PIN GPIO_NUM_38
+/*
 #define PIN_CAN_TX GPIO_NUM_47
 #define PIN_CAN_RX GPIO_NUM_38
 
@@ -13,7 +20,7 @@
 #define PIN_UART_RX 17
 
 #define WS2812_LED_PIN GPIO_NUM_48
-
+*/
 #elif defined(BOARD_ESP32C3_DEV)
 #define BOARD_ID 2
 #define PIN_CAN_TX GPIO_NUM_5
