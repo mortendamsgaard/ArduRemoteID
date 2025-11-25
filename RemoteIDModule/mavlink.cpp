@@ -110,8 +110,8 @@ void MAVLinkSerial::update_receive(void)
     status.packet_rx_drop_count = 0;
 
     const uint16_t nbytes = serial.available();
-    serial.printf("Mavlink data received: %u\n", nbytes);
     for (uint16_t i=0; i<nbytes; i++) {
+        serial.printf("Mavlink data received: %u\n", nbytes);
         const uint8_t c = (uint8_t)serial.read();
         // Try to get a new message
         if (mavlink_parse_char(chan, c, &msg, &status)) {
