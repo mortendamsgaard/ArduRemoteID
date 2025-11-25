@@ -45,7 +45,7 @@ void MAVLinkSerial::init(void)
 
     serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
     serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
-    serial.printf("Status LED pin; %u\n", WS2812_LED_PIN_GPIO_NUM);
+    serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
   
     mavlink_system.sysid = g.mavlink_sysid;
 }
