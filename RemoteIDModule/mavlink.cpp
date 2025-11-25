@@ -42,6 +42,11 @@ void MAVLinkSerial::init(void)
     // print banner at startup
     serial.printf("ArduRemoteID version %u.%u %08x\n",
                   FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
+
+    serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
+    serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
+    serial.printf("Status LED pin; %u\n", WS2812_LED_PIN_GPIO_NUM);
+  
     mavlink_system.sysid = g.mavlink_sysid;
 }
 
