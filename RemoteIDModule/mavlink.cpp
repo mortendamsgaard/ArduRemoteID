@@ -110,6 +110,7 @@ void MAVLinkSerial::update_receive(void)
     status.packet_rx_drop_count = 0;
 
     const uint16_t nbytes = serial.available();
+    serial.printf("Mavlink data received: %u\n", nbytes);
     for (uint16_t i=0; i<nbytes; i++) {
         const uint8_t c = (uint8_t)serial.read();
         // Try to get a new message
@@ -141,6 +142,7 @@ void MAVLinkSerial::process_packet(mavlink_status_t &status, mavlink_message_t &
     switch (msg.msgid) {
     case MAVLINK_MSG_ID_HEARTBEAT: {
         mavlink_heartbeat_t hb;
+        serial.printf("Mavlink MAVLINK_MSG_ID_HEARTBEAT received\n");
         if (mavlink_system.sysid == 0) {
             mavlink_msg_heartbeat_decode(&msg, &hb);
             if (msg.sysid > 0 && hb.type != MAV_TYPE_GCS) {
