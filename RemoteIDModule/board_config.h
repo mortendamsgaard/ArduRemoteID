@@ -9,8 +9,8 @@
 
 #define PIN_CAN_TX GPIO_NUM_8
 #define PIN_CAN_RX GPIO_NUM_9
-#define PIN_UART_TX 37
-#define PIN_UART_RX 36
+#define PIN_UART_TX GPIO_NUM_43
+#define PIN_UART_RX GPIO_NUM_44
 #define WS2812_LED_PIN GPIO_NUM_38
 /*
 #define PIN_CAN_TX GPIO_NUM_47
