@@ -27,7 +27,7 @@ jobs:
         run: |
           cd RemoteIDModule
           make setup
-          make esp32s3dev
+          make all
 
       - name: Check build files
         id: check_files
