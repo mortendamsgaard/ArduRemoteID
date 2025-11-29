@@ -7,7 +7,7 @@
 #include "version.h"
 #include "parameters.h"
 
-#define SERIAL_BAUD 115200
+// #define SERIAL_BAUD 115200
 
 static HardwareSerial *serial_ports[MAVLINK_COMM_NUM_BUFFERS];
 
@@ -42,7 +42,8 @@ void MAVLinkSerial::init(void)
     // print banner at startup
     serial.printf("ArduRemoteID version %u.%u %08x\n",
                   FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
-
+  
+    serial.printf("Mavlink channel: %u\n", chan);
     serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
     serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
     #ifdef WS2812_LED_PIN
