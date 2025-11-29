@@ -11,7 +11,7 @@
 #define MAVLINK_SEND_UART_BYTES(chan, buf, len) comm_send_buffer(chan, buf, len)
 
 // two buffers, one for USB, one for UART. This makes for easier testing with SITL
-#define MAVLINK_COMM_NUM_BUFFERS 2
+#define MAVLINK_COMM_NUM_BUFFERS 1
 
 #define MAVLINK_MAX_PAYLOAD_LEN 255
 
