@@ -40,15 +40,15 @@ MAVLinkSerial::MAVLinkSerial(HardwareSerial &_serial, mavlink_channel_t _chan) :
 void MAVLinkSerial::init(void)
 {
     // print banner at startup
-    Serial.printf("ArduRemoteID version %u.%u %08x\n",
+    //Serial.printf("ArduRemoteID version %u.%u %08x\n",
                   FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
   
-    Serial.printf("Mavlink channel: %u\n", chan);
-    Serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
-    Serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
-    #ifdef WS2812_LED_PIN
-    Serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
-    #endif
+    //Serial.printf("Mavlink channel: %u\n", chan);
+    //Serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
+    //Serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
+    //#ifdef WS2812_LED_PIN
+    //Serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
+    //#endif
     
   mavlink_system.sysid = g.mavlink_sysid;
 }
