@@ -80,13 +80,11 @@ void setup()
       Serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
     #endif
 
-    return;
+    //return;
     // Serial1 for MAVLink
-    Serial1.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
-    Serial1.printf("Mavlink test port\n");
+    Serial2.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
+    Serial2.printf("Mavlink test port\n");
 
-    
-  
     return;
   
     // set all fields to invalid/initial values
@@ -370,6 +368,10 @@ static uint8_t loop_counter = 0;
 
 void loop()
 {
+   Serial.printf("Loop\n");
+   delay(1);
+  return;
+  
 #if AP_MAVLINK_ENABLED
     mavlink1.update();
     //mavlink2.update();
