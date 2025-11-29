@@ -40,14 +40,14 @@ MAVLinkSerial::MAVLinkSerial(HardwareSerial &_serial, mavlink_channel_t _chan) :
 void MAVLinkSerial::init(void)
 {
     // print banner at startup
-    serial.printf("ArduRemoteID version %u.%u %08x\n",
+    Serial.printf("ArduRemoteID version %u.%u %08x\n",
                   FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
   
-    serial.printf("Mavlink channel: %u\n", chan);
-    serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
-    serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
+    Serial.printf("Mavlink channel: %u\n", chan);
+    Serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
+    Serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
     #ifdef WS2812_LED_PIN
-    serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
+    Serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
     #endif
     
   mavlink_system.sysid = g.mavlink_sysid;
@@ -63,7 +63,7 @@ void MAVLinkSerial::update(void)
         mavlink_system.sysid = g.mavlink_sysid;
     } else if (now_ms - last_hb_warn_ms >= 2000) {
         last_hb_warn_ms = millis();
-        serial.printf("Waiting for heartbeat\n");
+        Serial.printf("Waiting for heartbeat\n");
     }
     update_receive();
 
@@ -112,10 +112,11 @@ void MAVLinkSerial::update_receive(void)
 
     const uint16_t nbytes = serial.available();
     for (uint16_t i=0; i<nbytes; i++) {
-        serial.printf("Mavlink data received: %u\n", nbytes);
+        Serial.printf("Mavlink data received: %u\n", nbytes);
         const uint8_t c = (uint8_t)serial.read();
         // Try to get a new message
         if (mavlink_parse_char(chan, c, &msg, &status)) {
+            Serial.printf("Mavlink process packet. Status: %u\n", status);
             process_packet(status, msg);
         }
     }
@@ -143,7 +144,7 @@ void MAVLinkSerial::process_packet(mavlink_status_t &status, mavlink_message_t &
     switch (msg.msgid) {
     case MAVLINK_MSG_ID_HEARTBEAT: {
         mavlink_heartbeat_t hb;
-        serial.printf("Mavlink MAVLINK_MSG_ID_HEARTBEAT received\n");
+        Serial.printf("Mavlink MAVLINK_MSG_ID_HEARTBEAT received\n");
         if (mavlink_system.sysid == 0) {
             mavlink_msg_heartbeat_decode(&msg, &hb);
             if (msg.sysid > 0 && hb.type != MAV_TYPE_GCS) {
