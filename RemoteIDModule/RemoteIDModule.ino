@@ -32,7 +32,7 @@ static DroneCAN dronecan;
 
 #if AP_MAVLINK_ENABLED
 static MAVLinkSerial mavlink1{Serial1, MAVLINK_COMM_0};
-static MAVLinkSerial mavlink2{Serial,  MAVLINK_COMM_1};
+// static MAVLinkSerial mavlink2{Serial,  MAVLINK_COMM_1};
 #endif
 
 static WiFi_TX wifi;
@@ -71,7 +71,14 @@ void setup()
     }
 
     // Serial for debug printf
-    Serial.begin(g.baudrate);
+    Serial.begin(115200);
+
+    Serial.printf("ArduRemoteID version %u.%u %08x\n", FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
+    Serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
+    Serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
+    #ifdef WS2812_LED_PIN
+      Serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
+    #endif
 
     // Serial1 for MAVLink
     Serial1.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
@@ -81,7 +88,7 @@ void setup()
 
 #if AP_MAVLINK_ENABLED
     mavlink1.init();
-    mavlink2.init();
+    //mavlink2.init();
 #endif
 #if AP_DRONECAN_ENABLED
     dronecan.init();
@@ -359,7 +366,7 @@ void loop()
 {
 #if AP_MAVLINK_ENABLED
     mavlink1.update();
-    mavlink2.update();
+    //mavlink2.update();
 #endif
 #if AP_DRONECAN_ENABLED
     dronecan.update();
