@@ -31,7 +31,7 @@ static DroneCAN dronecan;
 #endif
 
 #if AP_MAVLINK_ENABLED
-static MAVLinkSerial mavlink1{Serial0, MAVLINK_COMM_0};
+static MAVLinkSerial mavlink1{Serial1, MAVLINK_COMM_0};
 // static MAVLinkSerial mavlink2{Serial,  MAVLINK_COMM_1};
 #endif
 
@@ -81,7 +81,7 @@ void setup()
     #endif
 
     // Serial1 for MAVLink
-    Serial0.begin(57400); //g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
+    Serial1.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
 
     // set all fields to invalid/initial values
     odid_initUasData(&UAS_data);
