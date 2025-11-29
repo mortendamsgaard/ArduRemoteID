@@ -71,13 +71,13 @@ void setup()
     }
 
     // Serial for debug printf
-    Serial.begin(115200);
+    USBSerial.begin(115200);
 
-    Serial.printf("ArduRemoteID version %u.%u %08x\n", FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
-    Serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
-    Serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
+    USBSerial.printf("ArduRemoteID version %u.%u %08x\n", FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
+    USBSerial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
+    USBSerial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
     #ifdef WS2812_LED_PIN
-      Serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
+      USBSerial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
     #endif
 
     // Serial1 for MAVLink
