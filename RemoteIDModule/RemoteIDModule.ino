@@ -82,8 +82,9 @@ void setup()
 
     //return;
     // Serial1 for MAVLink
-    Serial0.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
-    Serial0.printf("Mavlink test port\n");
+    HardwareSerial MavSerial(0);  // UART0
+    MavSerial.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
+    MavSerial.printf("Mavlink test port\n");
 
     return;
   
