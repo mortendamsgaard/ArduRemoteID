@@ -41,7 +41,7 @@ void MAVLinkSerial::init(void)
 {
     // print banner at startup
     //Serial.printf("ArduRemoteID version %u.%u %08x\n",
-                  FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
+    //              FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
   
     //Serial.printf("Mavlink channel: %u\n", chan);
     //Serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
