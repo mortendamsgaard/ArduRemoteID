@@ -82,7 +82,12 @@ void setup()
 
     // Serial1 for MAVLink
     Serial1.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
+    Serial1.printf("Mavlink test port\n");
 
+    
+  
+    return;
+  
     // set all fields to invalid/initial values
     odid_initUasData(&UAS_data);
 
