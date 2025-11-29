@@ -31,7 +31,7 @@ static DroneCAN dronecan;
 #endif
 
 #if AP_MAVLINK_ENABLED
-static MAVLinkSerial mavlink1{Serial1, MAVLINK_COMM_0};
+static MAVLinkSerial mavlink1{Serial0, MAVLINK_COMM_0};
 // static MAVLinkSerial mavlink2{Serial,  MAVLINK_COMM_1};
 #endif
 
@@ -71,17 +71,17 @@ void setup()
     }
 
     // Serial for debug printf
-    USBSerial.begin(115200);
+    Serial.begin(115200);
 
-    USBSerial.printf("ArduRemoteID version %u.%u %08x\n", FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
-    USBSerial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
-    USBSerial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
+    Serial.printf("ArduRemoteID version %u.%u %08x\n", FW_VERSION_MAJOR, FW_VERSION_MINOR, GIT_VERSION);
+    Serial.printf("Mavlink UART TX pin; %u\n", PIN_UART_TX);
+    Serial.printf("Mavlink UART RX pin; %u\n", PIN_UART_RX);
     #ifdef WS2812_LED_PIN
-      USBSerial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
+      Serial.printf("Status LED pin; %u\n", WS2812_LED_PIN);
     #endif
 
     // Serial1 for MAVLink
-    Serial1.begin(g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
+    Serial0.begin(57400); //g.baudrate, SERIAL_8N1, PIN_UART_RX, PIN_UART_TX);
 
     // set all fields to invalid/initial values
     odid_initUasData(&UAS_data);
